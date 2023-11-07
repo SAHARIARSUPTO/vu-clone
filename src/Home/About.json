@@ -1,0 +1,31 @@
+[
+    {
+      "Faculties": 4,
+      "Image": "https://i.ibb.co/RNLMgCR/faculty.png"
+    },
+    {
+      "Departments": 11,
+      "Image": "https://i.ibb.co/27cHDnn/session.png"
+    },
+    {
+      "Programs": ["Undergraduate", "Graduate"],
+      "Image": "https://i.ibb.co/QcFh2BY/education.png"
+    },
+    {
+      "Sessions": "Bi-Semester",
+      "Image": "https://i.ibb.co/1RmrjsK/semester.png"
+    },
+    {
+      "Libraries": 2,
+      "Image": "https://i.ibb.co/N1YN4Pp/library.png"
+    },
+    {
+      "Classrooms": "AC Classroom",
+      "Image": "https://i.ibb.co/5svXtfS/classroom.png"
+    },
+    {
+      "Transportation": "Paid Bus Transportation",
+      "Image": "https://i.ibb.co/NY8Q2wL/bus.png"
+    }
+  ]
+  

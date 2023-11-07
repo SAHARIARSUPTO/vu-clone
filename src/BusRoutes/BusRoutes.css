@@ -1,0 +1,15 @@
+@keyframes colorChange {
+    from {
+      background: #fff; /* Initial color */
+    }
+    to {
+      background: rgb(33, 150, 243); /* Final color */
+    }
+  }
+  
+  .vertical-timeline::before {
+    animation: colorChange 2s ease forwards; /* Apply the animation */
+  }
+  .vertical-timeline.start-animation::before {
+    animation: colorChange 2s ease forwards;
+  }
