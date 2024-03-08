@@ -1,229 +1,263 @@
-import { faBus } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import React, { useEffect } from 'react';
-import { VerticalTimeline, VerticalTimelineElement } from 'react-vertical-timeline-component';
-import 'react-vertical-timeline-component/style.min.css';
-import Navbar from '../Home/Navbar';
-import "./BusRoutes.css";
-import bus from "./bus.png";
-import Footer from "../Footer/Footer.jsx";
+import React, { useState } from "react";
+import Navbar from "../Home/Navbar";
+import BusInformation from "./BusInformation";
+
 const BusRoutes = () => {
-  
-  useEffect(() => {
-    // Add a class to the timeline to start the animation when the component mounts
-    document.querySelector('.vertical-timeline').classList.add('start-animation');
-  }, []);
+  const [pickupPoint, setPickupPoint] = useState("");
+  const [route, setRoute] = useState("");
+  const [mainTime, setMainTime] = useState("");
+  const [result, setResult] = useState("");
+
+  const handlePickupPointChange = (event) => {
+    setPickupPoint(event.target.value);
+  };
+
+  const handleRouteChange = (event) => {
+    setRoute(event.target.value);
+    setPickupPoint("");
+    setMainTime("");
+    setResult("");
+  };
+
+  const handleTimeChange = (event) => {
+    setMainTime(event.target.value);
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    if (pickupPoint && route && mainTime) {
+      setResult(getBusArrivalTime(pickupPoint, route, mainTime));
+    } else {
+      setResult("Please select pickup point, route, and time.");
+    }
+  };
+
+  const getBusArrivalTime = (pickupPoint, route, mainTime) => {
+    let arrivalTime;
+    if (route === "1") {
+      // Route 1 logic
+      switch (pickupPoint) {
+        case "Police Line":
+          arrivalTime = 8.2;
+          break;
+        case "C & B":
+          arrivalTime = 8.25;
+          break;
+        case "Jadughor Mor":
+          arrivalTime = 8.3;
+          break;
+        case "Moni Chottor":
+          arrivalTime = 8.35;
+          break;
+        case "Alupotti":
+          arrivalTime = 8.4;
+          break;
+        case "Talaimari":
+          arrivalTime = 8.45;
+          break;
+        case "VARENDRA UNIVERSITY":
+          arrivalTime = 9.0;
+          break;
+        default:
+          return "Invalid pickup point";
+      }
+    } else if (route === "2") {
+      // Route 2 logic
+      switch (pickupPoint) {
+        case "Court Station":
+          arrivalTime = 8.2;
+          break;
+        case "Bohorompur Mor":
+          arrivalTime = 8.25;
+          break;
+        case "City Bypass":
+          arrivalTime = 8.3;
+          break;
+        case "Bornali Mor":
+          arrivalTime = 8.35;
+          break;
+        case "Railgate":
+          arrivalTime = 8.4;
+          break;
+        case "Amchottor":
+          arrivalTime = 8.5;
+          break;
+        case "VU Campus":
+          arrivalTime = 9.0;
+          break;
+        default:
+          return "Invalid pickup point";
+      }
+    }
+    if (mainTime < 8 || mainTime >= 9) {
+      return "Bus service is not available at this time";
+    } else if (arrivalTime - mainTime < 0) {
+      return `Your Bus has left. Next stop: ${getNextStop(pickupPoint, route)}`;
+    } else {
+      return `Bus arriving in ${parseFloat(arrivalTime - mainTime).toFixed(
+        2
+      )} Hours`;
+    }
+  };
+
+  const getNextStop = (pickupPoint, route) => {
+    const stopsRoute1 = [
+      "Police Line",
+      "C & B",
+      "Jadughor Mor",
+      "Moni Chottor",
+      "Alupotti",
+      "Talaimari",
+      "VARENDRA UNIVERSITY",
+    ];
+    const stopsRoute2 = [
+      "Court Station",
+      "Bohorompur Mor",
+      "City Bypass",
+      "Bornali Mor",
+      "Railgate",
+      "Amchottor",
+      "VU Campus",
+    ];
+    const currentIndex =
+      route === "1"
+        ? stopsRoute1.indexOf(pickupPoint)
+        : stopsRoute2.indexOf(pickupPoint);
+    return route === "1"
+      ? stopsRoute1[currentIndex + 1]
+      : stopsRoute2[currentIndex + 1];
+  };
+
   return (
-    <div>
+    <>
       <div>
         <Navbar></Navbar>
       </div>
-     <div className='parent flex'>
-
-<div> <div>
-      <div className='mt-10'>
-        <div><p className='font-bold text-xl text-[#c44c2c] text-center justify-center mx-auto'>Route-1</p></div>
-        <img className='w-1/5 text-center justify-center mx-auto rounded-2xl' src="https://scontent.fdac148-1.fna.fbcdn.net/v/t1.6435-9/67404461_2348395345426818_2841625842788859904_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=7f8c78&_nc_eui2=AeEzSU2GXQ2mVRFDrWk52HlZeh7lIOnzGnJ6HuUg6fMactz7HZeOZyQsdz3IiJ8vYp2cSPrvxx67AsRcHms7rH4S&_nc_ohc=wym5xAoad9oAX9GjZSz&_nc_ht=scontent.fdac148-1.fna&oh=00_AfBt_4iJWJtErlVJJ_Wt0XWizCbZ5YllLh5YSZs3TsrAug&oe=657111EE" alt="" />
+      <div className="mt-5">
+        <BusInformation></BusInformation>
       </div>
-      <VerticalTimeline className="relative vertical-timeline">
-      {/* Each VerticalTimelineElement represents a bus stop */}
-      <VerticalTimelineElement
-        className="vertical-timeline-element--work"
-        contentStyle={{ boxShadow: 'none' }} 
-        contentArrowStyle={{ borderRight: '7px solid  rgb(33, 150, 243)' }}
-        date=" VU Campus - 9.15AM/1.00PM/3.00PM/05.10PM"
-        iconStyle={{ background: '#c44c2c', color: '#fff' }}
-        icon={<FontAwesomeIcon icon={faBus}></FontAwesomeIcon>}
-      >
-        {/* Content for VU Campus */}
-      </VerticalTimelineElement>
-
-      {/* Repeat for other stops */}
-      {/* CNB More */}
-      <VerticalTimelineElement
-        className="vertical-timeline-element--work"
-        date="8.20AM/10.00PM/01.50PM/03/50PM - Veripara"
-        iconStyle={{ background: '#c44c2c', color: '#fff' }}
-        icon={<FontAwesomeIcon icon={faBus}></FontAwesomeIcon>}
-      >
-        {/* Content for CNB More */}
-      </VerticalTimelineElement>
-
-   
-      <VerticalTimelineElement
-        className="vertical-timeline-element--work"
-        date="C&B More" 
-        icon={<FontAwesomeIcon icon={faBus}></FontAwesomeIcon>}
-        iconStyle={{ background: '#c44c2c', color: '#fff' }}
-      >
-        {/* Content for Zero Point */}
-      </VerticalTimelineElement>
-
-
-      {/* Zero Point */}
-      <VerticalTimelineElement
-        className="vertical-timeline-element--work"
-        date="Zero Point" 
-        icon={<FontAwesomeIcon icon={faBus}></FontAwesomeIcon>}
-        iconStyle={{ background: '#c44c2c', color: '#fff' }}
-      >
-        {/* Content for Zero Point */}
-      </VerticalTimelineElement>
-
-      {/* Alupotti */}
-      <VerticalTimelineElement
-        className="vertical-timeline-element--work"
-        date="Alupotti"
-        icon={<FontAwesomeIcon icon={faBus}></FontAwesomeIcon>}
-        iconStyle={{ background: '#c44c2c', color: '#fff' }}
-      >
-        {/* Content for Alupotti */}
-      </VerticalTimelineElement>
-
-
-
-
-      {/* Hadir More */}
-      <VerticalTimelineElement
-        className="vertical-timeline-element--work"
-        date="8.30 AM - Hadir More"
-        icon={<FontAwesomeIcon icon={faBus}></FontAwesomeIcon>}
-        iconStyle={{ background: '#c44c2c', color: '#fff' }}
-      >
-        {/* Content for Hadir More */}
-      </VerticalTimelineElement>
-
- {/* Alupotti */}
- <VerticalTimelineElement
-        className="vertical-timeline-element--work"
-        date="Talaimari"
-        icon={<FontAwesomeIcon icon={faBus}></FontAwesomeIcon>}
-        iconStyle={{ background: '#c44c2c', color: '#fff' }}
-      >
-        {/* Content for Alupotti */}
-      </VerticalTimelineElement>
-
-
-
-      {/* Oktroi More */}
-      <VerticalTimelineElement
-        className="vertical-timeline-element--work"
-        date="Oktroi More"
-        icon={<FontAwesomeIcon icon={faBus}></FontAwesomeIcon>}
-        iconStyle={{ background: '#c44c2c', color: '#fff' }}
-      >
-        {/* Content for Oktroi More */}
-      </VerticalTimelineElement>
-
-      {/* VU Campus - Ending Point */}
-      <VerticalTimelineElement
-        className="vertical-timeline-element--work"
-        date="8.50 AM - VU Campus"
-        icon={<FontAwesomeIcon icon={faBus}></FontAwesomeIcon>}
-        iconStyle={{ background: '#c44c2c', color: '#fff' }}
-       >
-        {/* Content for VU Campus */}
-      </VerticalTimelineElement>
-    </VerticalTimeline>
-      </div></div>
-<div className='child-two'>
-<div>
-      <div className='mt-10'>
-        <div><p className='font-bold text-xl text-[#c44c2c] text-center justify-center mx-auto'>Route-2</p></div>
-        <img className='w-1/5 text-center justify-center mx-auto rounded-2xl' src="https://scontent.fdac148-1.fna.fbcdn.net/v/t1.6435-9/67404461_2348395345426818_2841625842788859904_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=7f8c78&_nc_eui2=AeEzSU2GXQ2mVRFDrWk52HlZeh7lIOnzGnJ6HuUg6fMactz7HZeOZyQsdz3IiJ8vYp2cSPrvxx67AsRcHms7rH4S&_nc_ohc=wym5xAoad9oAX9GjZSz&_nc_ht=scontent.fdac148-1.fna&oh=00_AfBt_4iJWJtErlVJJ_Wt0XWizCbZ5YllLh5YSZs3TsrAug&oe=657111EE" alt="" />
+      <div className="container mx-auto p-4 bg-green-200 rounded-xl mt-10 w-2/4">
+        <h1 className="text-center text-3xl font-bold mb-8">
+          Varendra University Bus Service
+        </h1>
+        <form onSubmit={handleSubmit} className="max-w-sm mx-auto">
+          <div className="mb-4">
+            <label htmlFor="route" className="block font-medium">
+              Select Route:
+            </label>
+            <select
+              id="route"
+              value={route}
+              onChange={handleRouteChange}
+              className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm bg-gray-100"
+              required
+            >
+              <option value="">Select</option>
+              <option value="1" className="bg-blue-200">
+                Route 1
+              </option>
+              <option value="2" className="bg-green-200">
+                Route 2
+              </option>
+            </select>
+          </div>
+          {route && (
+            <div className="mb-4">
+              <label htmlFor="pickupPoint" className="block font-medium">
+                Select Pickup Point:
+              </label>
+              <select
+                id="pickupPoint"
+                value={pickupPoint}
+                onChange={handlePickupPointChange}
+                className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm bg-gray-100"
+                required
+              >
+                <option value="">Select</option>
+                {route === "1" ? (
+                  <>
+                    <option value="Police Line" className="bg-blue-200">
+                      Police Line
+                    </option>
+                    <option value="C & B" className="bg-blue-200">
+                      C & B
+                    </option>
+                    <option value="Jadughor Mor" className="bg-blue-200">
+                      Jadughor Mor
+                    </option>
+                    <option value="Moni Chottor" className="bg-blue-200">
+                      Moni Chottor
+                    </option>
+                    <option value="Alupotti" className="bg-blue-200">
+                      Alupotti
+                    </option>
+                    <option value="Talaimari" className="bg-blue-200">
+                      Talaimari
+                    </option>
+                    <option value="VARENDRA UNIVERSITY" className="bg-blue-200">
+                      VARENDRA UNIVERSITY
+                    </option>
+                  </>
+                ) : (
+                  <>
+                    <option value="Court Station" className="bg-green-200">
+                      Court Station
+                    </option>
+                    <option value="Bohorompur Mor" className="bg-green-200">
+                      Bohorompur Mor
+                    </option>
+                    <option value="City Bypass" className="bg-green-200">
+                      City Bypass
+                    </option>
+                    <option value="Bornali Mor" className="bg-green-200">
+                      Bornali Mor
+                    </option>
+                    <option value="Railgate" className="bg-green-200">
+                      Railgate
+                    </option>
+                    <option value="Amchottor" className="bg-green-200">
+                      Amchottor
+                    </option>
+                    <option value="VU Campus" className="bg-green-200">
+                      VU Campus
+                    </option>
+                  </>
+                )}
+              </select>
+            </div>
+          )}
+          {pickupPoint && (
+            <div className="mb-4">
+              <label htmlFor="time" className="block font-medium">
+                Enter Current Time (8 to 9 AM):
+              </label>
+              <input
+                type="number"
+                id="time"
+                value={mainTime}
+                onChange={handleTimeChange}
+                className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm bg-gray-100"
+                min={8}
+                max={8.99}
+                step={0.01}
+                required
+              />
+            </div>
+          )}
+          <button
+            type="submit"
+            className="w-full py-2 px-4 border border-transparent rounded-md shadow-sm text-white bg-blue-500 hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+          >
+            Check Bus Availability
+          </button>
+        </form>
+        {result && (
+          <div className="mt-8">
+            <p className="text-lg font-medium text-center">{result}</p>
+          </div>
+        )}
       </div>
-      <VerticalTimeline className="relative vertical-timeline">
-      {/* Each VerticalTimelineElement represents a bus stop */}
-      <VerticalTimelineElement
-        className="vertical-timeline-element--work"
-        contentStyle={{ boxShadow: 'none' }} 
-        contentArrowStyle={{ borderRight: '7px solid  rgb(33, 150, 243)' }}
-        date="VU Campus - 9.15AM/1.00PM/3.00PM/05.10PM"
-        iconStyle={{ background: '#c44c2c', color: '#fff' }}
-        icon={<FontAwesomeIcon icon={faBus}></FontAwesomeIcon>}
-      >
-        {/* Content for VU Campus */}
-      </VerticalTimelineElement>
-
-      {/* Repeat for other stops */}
-      {/* CNB More */}
-      <VerticalTimelineElement
-        className="vertical-timeline-element--work"
-        date="8.20AM/10.00PM/01.50PM/03/5.10PM - Court Station"
-        iconStyle={{ background: '#c44c2c', color: '#fff' }}
-        icon={<FontAwesomeIcon icon={faBus}></FontAwesomeIcon>}
-      >
-        {/* Content for CNB More */}
-      </VerticalTimelineElement>
-
-      {/* Zero Point */}
-      <VerticalTimelineElement
-        className="vertical-timeline-element--work"
-        date="Bohorompur Mor" 
-        icon={<FontAwesomeIcon icon={faBus}></FontAwesomeIcon>}
-        iconStyle={{ background: '#c44c2c', color: '#fff' }}
-      >
-        {/* Content for Zero Point */}
-      </VerticalTimelineElement>
-
-      {/* Alupotti */}
-      <VerticalTimelineElement
-        className="vertical-timeline-element--work"
-        date="City Bypass"
-        icon={<FontAwesomeIcon icon={faBus}></FontAwesomeIcon>}
-        iconStyle={{ background: '#c44c2c', color: '#fff' }}
-      >
-        {/* Content for Alupotti */}
-      </VerticalTimelineElement>
-
-      {/* Hadir More */}
-      <VerticalTimelineElement
-        className="vertical-timeline-element--work"
-        date="Bornali Mor"
-        icon={<FontAwesomeIcon icon={faBus}></FontAwesomeIcon>}
-        iconStyle={{ background: '#c44c2c', color: '#fff' }}
-      >
-        {/* Content for Hadir More */}
-      </VerticalTimelineElement>
-
-      {/* Oktroi More */}
-      <VerticalTimelineElement
-        className="vertical-timeline-element--work"
-        date="Railgate"
-        icon={<FontAwesomeIcon icon={faBus}></FontAwesomeIcon>}
-        iconStyle={{ background: '#c44c2c', color: '#fff' }}
-      >
-        {/* Content for Oktroi More */}
-      </VerticalTimelineElement>
-
-      <VerticalTimelineElement
-        className="vertical-timeline-element--work"
-        date="Amchottor"
-        icon={<FontAwesomeIcon icon={faBus}></FontAwesomeIcon>}
-        iconStyle={{ background: '#c44c2c', color: '#fff' }}
-       >
-        {/* Content for VU Campus */}
-      </VerticalTimelineElement>
-
-      {/* VU Campus - Ending Point */}
-      <VerticalTimelineElement
-        className="vertical-timeline-element--work"
-        date="8.50 AM - VU Campus"
-        icon={<FontAwesomeIcon icon={faBus}></FontAwesomeIcon>}
-        iconStyle={{ background: '#c44c2c', color: '#fff' }}
-       >
-        {/* Content for VU Campus */}
-      </VerticalTimelineElement>
-    </VerticalTimeline>
-      </div>
-</div>
-
-     </div>
-  <Footer></Footer>
-    </div>
-
-
-
+    </>
   );
 };
 

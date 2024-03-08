@@ -32,8 +32,8 @@ const Login = () => {
         throw new Error(errorData.error);
       }
 
-      // Redirect to dashboard upon successful login
-      navigate("/dashboard");
+      // Redirect to attendance page upon successful login
+      navigate(`/dashboard/${credentials.studentID}`);
     } catch (error) {
       console.error("Login Error:", error.message);
       setError(error.message || "An error occurred. Please try again later.");
