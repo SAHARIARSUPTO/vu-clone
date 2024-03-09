@@ -13,7 +13,7 @@ const Attendance = () => {
     const fetchAttendanceData = async () => {
       try {
         const response = await fetch(
-          `http://localhost:3000/attendance/${studentID}`
+          `https://vu-server.vercel.app/attendance/${studentID}`
         );
         if (!response.ok) {
           throw new Error("Failed to fetch attendance data");

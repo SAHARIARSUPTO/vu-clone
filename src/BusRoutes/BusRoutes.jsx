@@ -136,7 +136,7 @@ const BusRoutes = () => {
       <div className="mt-5">
         <BusInformation></BusInformation>
       </div>
-      <div className="container mx-auto p-4 bg-green-200 rounded-xl mt-10 w-2/4">
+      <div className="container mx-auto p-4 bg-green-200 rounded-xl mt-10 w-full md:w-1/2 lg:w-1/4">
         <h1 className="text-center text-3xl font-bold mb-8">
           Varendra University Bus Service
         </h1>

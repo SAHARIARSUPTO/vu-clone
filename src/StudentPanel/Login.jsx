@@ -19,13 +19,16 @@ const Login = () => {
     }
 
     try {
-      const response = await fetch("http://localhost:3000/authenticate", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(credentials),
-      });
+      const response = await fetch(
+        "https://vu-server.vercel.app/authenticate",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(credentials),
+        }
+      );
 
       if (!response.ok) {
         const errorData = await response.json();

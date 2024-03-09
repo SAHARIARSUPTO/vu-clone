@@ -8,6 +8,7 @@ import {
   faComments,
   faTasks,
 } from "@fortawesome/free-solid-svg-icons";
+import { faAngleDown, faBars } from "@fortawesome/free-solid-svg-icons";
 
 const Sidebar = () => {
   const { studentID } = useParams(); // Retrieve student ID from URL
@@ -19,11 +20,8 @@ const Sidebar = () => {
         <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
         <div className="drawer-content flex flex-col items-center justify-center">
           {/* Page content here */}
-          <label
-            htmlFor="my-drawer-2"
-            className="btn btn-primary drawer-button lg:hidden"
-          >
-            Open drawer
+          <label htmlFor="my-drawer-2" className="btn  drawer-button lg:hidden">
+            <FontAwesomeIcon icon={faBars} className="text-black" />
           </label>
         </div>
         <div className="drawer-side">
@@ -32,7 +30,7 @@ const Sidebar = () => {
             aria-label="close sidebar"
             className="drawer-overlay"
           ></label>
-          <ul className="menu p-4 w-64 min-h-full bg-gray-300 text-black hover:text-black">
+          <ul className="menu p-4 w-64  bg-gray-300 text-black hover:text-black">
             {/* Sidebar content here */}
             <li className="mb-4">
               <NavLink
