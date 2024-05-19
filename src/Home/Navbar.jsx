@@ -1,6 +1,7 @@
-import React from "react";
 import logo from "./logo.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faHeart } from "@fortawesome/free-solid-svg-icons";
+
 import { faAngleDown } from "@fortawesome/free-solid-svg-icons";
 import SecondNavbar from "./SecondNavbar";
 import { Link } from "react-router-dom";
@@ -19,60 +20,54 @@ const Navbar = () => {
             <div className="group relative hover:bg-gray-100 p-2 rounded hover:text-[#c44c2c]">
               About VU <FontAwesomeIcon icon={faAngleDown} />
               <div className="absolute left-0 mt-1 hidden group-hover:block bg-white shadow-lg rounded-md w-40 z-10">
-                <a
-                  href="#"
+                <Link
+                  to="/ata_glance"
                   className="block px-4 py-2 text-sm text-gray-700 hover:text-[#c44c2c] hover:bg-gray-100"
                 >
                   At a Glance
-                </a>
-                <a
-                  href="#"
+                </Link>
+                <Link
+                  to="/vu_history"
                   className="block px-4 py-2 text-sm text-gray-700 hover:text-[#c44c2c] hover:bg-gray-100"
                 >
                   History of VU
-                </a>
-                <a
-                  href="#"
+                </Link>
+                <Link
+                  to="/why_vu"
                   className="block px-4 py-2 text-sm text-gray-700 hover:text-[#c44c2c] hover:bg-gray-100"
                 >
                   Why VU?
-                </a>
+                </Link>
               </div>
             </div>
 
             <div className="group relative hover:bg-gray-100 hover:text-[#c44c2c] p-2 rounded">
               Facilities <FontAwesomeIcon icon={faAngleDown} />
               <div className="absolute left-0 mt-1 hidden group-hover:block bg-white shadow-lg rounded-md w-40 z-10">
-                <a
-                  href="#"
+                <Link
+                  to="/ac_classroom"
                   className="block px-4 py-2 text-sm text-gray-700 hover:text-[#c44c2c] hover:bg-gray-100"
                 >
                   AC Classroom
-                </a>
-                <a
-                  href="#"
+                </Link>
+                <Link
+                  to="/lab"
                   className="block px-4 py-2 text-sm text-gray-700 hover:text-[#c44c2c] hover:bg-gray-100"
                 >
                   Laboratories
-                </a>
-                <a
-                  href="#"
+                </Link>
+                <Link
+                  to="/library"
                   className="block px-4 py-2 text-sm text-gray-700 hover:text-[#c44c2c] hover:bg-gray-100"
                 >
                   Libraries
-                </a>
-                <a
-                  href="#"
+                </Link>
+                <Link
+                  to="/transport"
                   className="block px-4 py-2 text-sm text-gray-700 hover:text-[#c44c2c] hover:bg-gray-100"
                 >
                   Transportation
-                </a>
-                <a
-                  href="#"
-                  className="block px-4 py-2 text-sm text-gray-700 hover:text-[#c44c2c] hover:bg-gray-100"
-                >
-                  Clubs
-                </a>
+                </Link>
               </div>
             </div>
 
@@ -80,115 +75,92 @@ const Navbar = () => {
               Academics
               <FontAwesomeIcon icon={faAngleDown} />
               <div className="absolute left-0 mt-1 hidden group-hover:block bg-white shadow-lg rounded-md w-40 z-10">
-                <a
-                  href="#"
-                  className="block px-4 py-2 text-sm text-gray-700 hover:text-[#c44c2c] hover:bg-gray-100"
-                >
-                  School
-                </a>
-                <a
-                  href="#"
+                <Link
+                  to="/departments"
                   className="block px-4 py-2 text-sm text-gray-700 hover:text-[#c44c2c] hover:bg-gray-100"
                 >
                   Departments
-                </a>
-                <a
-                  href="#"
-                  className="block px-4 py-2 text-sm text-gray-700 hover:text-[#c44c2c] hover:bg-gray-100"
-                >
-                  Institute Centers
-                </a>
+                </Link>
               </div>
             </div>
 
             <div className="group relative hover:bg-gray-100 p-2 rounded hover:text-[#c44c2c]">
-              Research
-            </div>
-
-            <div className="group relative hover:bg-gray-100 p-2 rounded hover:text-[#c44c2c]">
-              IQAC
-            </div>
-
-            <div className="group relative hover:bg-gray-100 p-2 rounded hover:text-[#c44c2c]">
-              Career Center
+              <Link to="/employeelogin">Career Center</Link>
             </div>
 
             <div className="group relative hover:bg-gray-100 p-2 rounded hover:text-[#c44c2c]">
               Online Services
               <FontAwesomeIcon icon={faAngleDown} />
               <div className="absolute left-0 mt-1 hidden group-hover:block bg-white shadow-lg rounded-md w-40 z-10">
-                <a
-                  href="#"
+                <Link
+                  to="/studentlogin"
                   className="block px-4 py-2 text-sm text-gray-700 hover:text-[#c44c2c] hover:bg-gray-100"
                 >
                   Student Panel
-                </a>
-                <a
-                  href="#"
-                  className="block px-4 py-2 text-sm text-gray-700 hover:text-[#c44c2c] hover:bg-gray-100"
+                </Link>
+                <Link
+                  to="/employeelogin"
+                  className="block px-4 py-2 text-sm text-gray-700
+                  hover:text-[#c44c2c] hover:bg-gray-100"
                 >
+                  {" "}
                   Career at VU
-                </a>
-                <a
-                  href="#"
+                </Link>
+                <Link
+                  to="/buspass"
                   className="block px-4 py-2 text-sm text-gray-700 hover:text-[#c44c2c] hover:bg-gray-100"
                 >
                   Bus Pass
-                </a>
-                <a
-                  href="#"
+                </Link>
+                <Link
+                  to="/bloodine"
                   className="block px-4 py-2 text-sm text-gray-700 hover:text-[#c44c2c] hover:bg-gray-100"
                 >
+                  <FontAwesomeIcon
+                    icon={faHeart}
+                    className="text-red-500 mr-2"
+                  />
                   VU Bloodline
-                </a>
-                <a
-                  href="#"
-                  className="block px-4 py-2 text-sm text-gray-700 hover:text-[#c44c2c] hover:bg-gray-100"
-                >
-                  News
-                </a>
-                <a
-                  href="#"
-                  className="block px-4 py-2 text-sm text-gray-700 hover:text-[#c44c2c] hover:bg-gray-100"
-                >
-                  Notices
-                </a>
-                <a
-                  href="#"
+                </Link>
+
+                <Link
+                  to="/notice_board"
                   className="block px-4 py-2 text-sm text-gray-700 hover:text-[#c44c2c] hover:bg-gray-100"
                 >
                   Events
-                </a>
-                <a
-                  href="#"
+                </Link>
+                <Link
+                  to="/feedback"
                   className="block px-4 py-2 text-sm text-gray-700 hover:text-[#c44c2c] hover:bg-gray-100"
                 >
                   Complain & Suggestions
-                </a>
-                <a
-                  href="#"
+                </Link>
+                <Link
+                  to="/studentlogin"
                   className="block px-4 py-2 text-sm text-gray-700 hover:text-[#c44c2c] hover:bg-gray-100"
                 >
                   Information Update
-                </a>
+                </Link>
               </div>
             </div>
-
             <div className="group relative hover:bg-gray-100 p-2 rounded hover:text-[#c44c2c]">
-              Convocation
+              <Link to="/alumni">Alumni</Link>
             </div>
-
-            <div className="group relative hover:bg-gray-100 p-2 rounded hover:text-[#c44c2c]">
-              Alumni
+            <div>
+              <Link
+                to="/notice_board"
+                className="relative rounded px-5 py-2.5 overflow-hidden group bg-[#c44c2c] hover:bg-gradient-to-r text-white hover:ring-2  hover:ring-green-400 "
+              >
+                Notices
+              </Link>
             </div>
-
             <div className="inline-block">
-              <a
-                href="#_"
+              <Link
+                to="/admission"
                 className="relative rounded px-5 py-2.5 overflow-hidden group bg-[#c44c2c] hover:bg-gradient-to-r text-white hover:ring-2  hover:ring-green-400 "
               >
                 <span className="relative">Admission</span>
-              </a>
+              </Link>
             </div>
           </div>
           <div className="md:hidden flex items-center">

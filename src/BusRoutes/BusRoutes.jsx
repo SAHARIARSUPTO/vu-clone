@@ -1,5 +1,4 @@
-import React, { useState } from "react";
-import Navbar from "../Home/Navbar";
+import { useState } from "react";
 import BusInformation from "./BusInformation";
 
 const BusRoutes = () => {
@@ -130,9 +129,7 @@ const BusRoutes = () => {
 
   return (
     <>
-      <div>
-        <Navbar></Navbar>
-      </div>
+      <div></div>
       <div className="mt-5">
         <BusInformation></BusInformation>
       </div>

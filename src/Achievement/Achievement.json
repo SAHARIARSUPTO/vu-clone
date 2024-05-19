@@ -1,21 +1,24 @@
-
+{
+  "achievements": [
     {
-        "achievements": [
-          {
-            "title": "Asia Private University Ranking 2023",
-            "description": "Ranked 10th",
-            "image": "https://vu.edu.bd/uploads/slider/images/RANK-VU-26-JUNE-23.jpg"
-          },
-          {
-            "title": "7th RUSC National Science Fiesta 2023",
-            "description": "2nd Runner Up for Poster Presentation",
-            "image": "https://vu.edu.bd/uploads/news/images/WhatsApp_Image_2023-10-19_at_18_08_36_2e02f5c7.jpg"
-          },
-          {
-            "title": "NASA SPACE APP Challenge 2023",
-            "description": "1st Runner up",
-            "image": "https://vu.edu.bd/uploads/news/images/1000012452-011.jpeg"
-          }
-        ]
-      }
-      
+      "title": "NASA SPACE APP Challenge",
+      "description": "World Champion",
+      "image": "https://scontent.fdac165-1.fna.fbcdn.net/v/t39.30808-6/422241140_122117258270166900_5755949337839920892_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=5f2048&_nc_eui2=AeHufxTon9z261XhfEN_O14cO08zGpwqV3w7TzManCpXfOPBhuqvc9NnhYBJlcgj1Pb0ndMG48sQM7GKpiJF9DXo&_nc_ohc=zrHwWNxPnjIQ7kNvgF6tz1q&_nc_ht=scontent.fdac165-1.fna&oh=00_AYBElpDVmL3awjbrUUTx-CFB21eUWhWXH9tY3qsL0VtFmQ&oe=664F9643"
+    },
+    {
+      "title": "Asia Private University Ranking 2023",
+      "description": "Ranked 10th",
+      "image": "https://vu.edu.bd/uploads/slider/images/RANK-VU-26-JUNE-23.jpg"
+    },
+    {
+      "title": "7th RUSC National Science Fiesta 2023",
+      "description": "2nd Runner Up for Poster Presentation",
+      "image": "https://vu.edu.bd/uploads/news/images/WhatsApp_Image_2023-10-19_at_18_08_36_2e02f5c7.jpg"
+    },
+    {
+      "title": "NASA SPACE APP Challenge 2023",
+      "description": "1st Runner up",
+      "image": "https://vu.edu.bd/uploads/news/images/1000012452-011.jpeg"
+    }
+  ]
+}
