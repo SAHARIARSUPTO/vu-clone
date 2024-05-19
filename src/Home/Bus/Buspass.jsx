@@ -1,6 +1,4 @@
 import { useState } from "react";
-import Navbar from "../Navbar";
-import Footer from "../../Footer/Footer";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -57,7 +55,6 @@ function Buspass() {
 
   return (
     <>
-      <Navbar />
       <div className="container mx-auto px-4 mt-20 min-h-screen">
         <form
           onSubmit={handleSubmit}
@@ -157,7 +154,6 @@ function Buspass() {
         {/* Toast container */}
         <ToastContainer />
       </div>
-      <Footer />
     </>
   );
 }
